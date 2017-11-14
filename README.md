@@ -1,12 +1,12 @@
 # Elasticsearch Spring Boot Spring Data
 :trophy: Starter example for using Elasticsearch repository with Springboot
 
-##Requirement
+## Requirement
 * Java 8
 * Elasticsearch 2.4.4
 * Elasticsearch Chrome Extension
 
-##Note
+## Note
 Please use download ElasticSearch of 2.4.x since Spring Boot 1.5.x don't support the latest version of ElasticSearch 5.x version. If you don't use correct verisions then you should
 get following error:
 ```
@@ -44,3 +44,7 @@ mvn spring-boot:run
 
 ![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/postman.png?raw=true "Optional Title")
 
+## Extra Points
+Additional endpoints exposed to get elastic details and clearing indices.
+* http://localhost:8080/elastic/clear-indices
+* http://localhost:8080/elastic/details
