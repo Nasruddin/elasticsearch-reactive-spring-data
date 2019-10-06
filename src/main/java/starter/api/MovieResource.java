@@ -29,7 +29,7 @@ public class MovieResource {
         Movie savedMovie = movieService.addMovie(newMovie);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
                 "/{id}").buildAndExpand(savedMovie.getId()).toUri();
-        return ResponseEntity.ok(savedMovie).created(location).build();
+        return ResponseEntity.created(location).build();
     }
 
     @DeleteMapping("/movie/{id}/delete")

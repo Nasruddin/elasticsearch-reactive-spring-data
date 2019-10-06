@@ -1,6 +1,7 @@
 package starter.api;
 
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.settings.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -26,10 +27,10 @@ public class ElasticResource {
 
 
     @GetMapping("/elastic/details")
-    public ResponseEntity<Map<String, String>> getElasticInformation() {
+    public ResponseEntity<Map<String, Settings>> getElasticInformation() {
 
         Client client = elasticsearchOperations.getClient();
-        Map<String, String> asMap = client.settings().getAsMap();
+        Map<String, Settings> asMap = client.settings().getAsGroups();
         return ResponseEntity.ok(asMap);
     }
 

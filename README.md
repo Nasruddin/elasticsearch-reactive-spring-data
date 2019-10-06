@@ -3,32 +3,44 @@
 
 ## Requirement
 * Java 8
-* Elasticsearch 2.4.4
-* Elasticsearch Chrome Extension
+* Docker
+* Head: Elasticsearch Chrome Extension
 
 ## Note
-Please use download ElasticSearch of 2.4.x since Spring Boot 1.5.x don't support the latest version of ElasticSearch 5.x version. If you don't use correct verisions then you should
+Please download ElasticSearch of 2.4.x if you are using Spring Boot 1.5.x. If you don't use correct versions then you should
 get following error:
 ```
 java.lang.IllegalStateException: Received message from unsupported version: [2.0.0] minimal compatible version is: [5.0.0]
 ```
-
+Also, if you are update Spring Boot to 2.x.x please download/run elasticsearch 6.8.3 version. If not you might face following issue:
+```
+failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: 
+None of the configured nodes are available: [{#transport#-1}{uWHhZacNR9mbfojQOayyAg}{127.0.0.1}{127.0.0.1:9300}]
+```
 ## Running the sample app
 
-* Install and run Elastic Server 2.4.4
+* Install and run Elastic Server 6.8.3
+```
+docker run -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:6.8.3
+```
 * Open browser and hit localhost:9300 and you should see below response
 ```
 {
-    name: "Micromax",
-    cluster_name: "elasticsearch",
+name: "x3oSjQ4",
+cluster_name: "docker-cluster",
+cluster_uuid: "SWR0yJPwRw2X0wNbq1R8pA",
     version: {
-    number: "2.4.0",
-    build_hash: "ce9f0c7394dee074091dd1bc4e9469251181fc55",
-    build_timestamp: "2016-08-29T09:14:17Z",
+    number: "6.8.3",
+    build_flavor: "default",
+    build_type: "docker",
+    build_hash: "0c48c0e",
+    build_date: "2019-08-29T19:05:24.312154Z",
     build_snapshot: false,
-    lucene_version: "5.5.2"
+    lucene_version: "7.7.0",
+    minimum_wire_compatibility_version: "5.6.0",
+    minimum_index_compatibility_version: "5.0.0"
     },
-    tagline: "You Know, for Search"
+tagline: "You Know, for Search"
 }
 ```
 * Now run Spring Boot application using below command

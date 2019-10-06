@@ -30,7 +30,7 @@ public class MovieService {
     }
 
     public void deleteMovie(Long id) {
-        movieRepository.delete(id);
+        movieRepository.deleteById(id);
     }
 
     public List<Movie> findByDirector(Director director) {
