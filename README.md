@@ -1,5 +1,11 @@
-# Elasticsearch Spring Boot Spring Data
+# ~~Elasticsearch Spring Boot Spring Data~~
 :trophy: Starter example for using Elasticsearch repository with Springboot
+
+# DEPRECATED
+TransportClient is deprecated as of Elasticsearch 7 and will be removed in Elasticsearch 8. 
+Spring Data Elasticsearch will support the TransportClient as long as it is available in the used Elasticsearch version but has deprecated the classes using it since version 4.0.
+
+_For recommended High Level REST Client refer this repository_ : https://github.com/Nasruddin/spring-elasticsearch-rest-high-level-client
 
 ## Requirement
 * Java 8
