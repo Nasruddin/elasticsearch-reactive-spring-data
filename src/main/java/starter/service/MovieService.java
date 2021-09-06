@@ -1,40 +1,53 @@
 package starter.service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import starter.model.Director;
+import starter.model.Genre;
 import starter.repository.MovieRepository;
 import starter.model.Movie;
+import starter.util.CsvUtil;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by Nasir on 12-09-2015.
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class MovieService {
 
-    @Autowired
-    private MovieRepository movieRepository;
+    private final MovieRepository movieRepository;
+    private final CsvUtil csvUtil;
 
-    public List<Movie> getByName(String name) {
+    public Flux<Movie> getByName(String name) {
         return movieRepository.findByName(name);
     }
 
-    public List<Movie> getByRatingInterval(Double start, Double end) {
+    public Flux<Movie> getByRatingInterval(Double start, Double end) {
         return movieRepository.findByRatingBetween(start, end);
     }
 
-    public Movie addMovie(Movie movie) {
+    public Mono<Movie> addMovie(Movie movie) {
         return movieRepository.save(movie);
     }
 
-    public void deleteMovie(Long id) {
+    public void deleteMovie(String id) {
         movieRepository.deleteById(id);
     }
 
-    public List<Movie> findByDirector(Director director) {
+    public Flux<Movie> findByDirector(Director director) {
         return movieRepository.findByDirector(director);
+    }
+
+    public Flux<Movie> saveAllMovies() {
+        return movieRepository.saveAll(csvUtil.getMovies()).doOnNext(movie -> log.info("Added: " + movie));
     }
 
 }

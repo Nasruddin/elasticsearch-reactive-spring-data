@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ElasticsearchSpringData
+  data:
+    elasticsearch:
+      client:
+        reactive:
+          endpoints: elasticsearch
+          #localhost:9200 - If not running in container
+  elasticsearch:
+    rest:
+      uris: http://elasticsearch
+      #http://localhost:9200 - If not running in container
+server:
+  port: 8888

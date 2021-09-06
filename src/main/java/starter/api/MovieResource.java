@@ -1,46 +1,45 @@
 package starter.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import starter.model.Movie;
 import starter.service.MovieService;
-
-import javax.xml.ws.Response;
-import java.net.URI;
-import java.util.List;
 
 /**
  * Created by nasir on 14/11/17.
  */
 @RestController
+@RequestMapping("/movie")
+@RequiredArgsConstructor
 public class MovieResource {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
-    @Autowired
-    public MovieResource(MovieService movieService) {
-        this.movieService = movieService;
+    @PostMapping
+    public Mono<Movie> addMovie(@RequestBody Movie newMovie) {
+        return movieService.addMovie(newMovie);
     }
 
-    @PostMapping("/movie/add")
-    public ResponseEntity<Movie> addMovie(@RequestBody  Movie newMovie) {
-        Movie savedMovie = movieService.addMovie(newMovie);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-                "/{id}").buildAndExpand(savedMovie.getId()).toUri();
-        return ResponseEntity.created(location).build();
-    }
-
-    @DeleteMapping("/movie/{id}/delete")
-    public ResponseEntity<String> deleteMovie(@PathVariable("id") Long movieId) {
+    @DeleteMapping("/{id}")
+    public Mono<String> deleteMovie(@PathVariable("id") String movieId) {
         movieService.deleteMovie(movieId);
-        return ResponseEntity.ok("Deleted");
+        return Mono.just("Deleted");
     }
 
-    @GetMapping("/movie/get-by-name/{name}")
-    public ResponseEntity<List<Movie>> findMovieByName(@PathVariable("name") String movieName) {
-        List<Movie> fetchedMovie = movieService.getByName(movieName);
-        return ResponseEntity.ok(fetchedMovie);
+    @GetMapping("/{name}")
+    public Flux<Movie> findMovieByName(@PathVariable("name") String movieName) {
+        return movieService.getByName(movieName);
+    }
+
+    @PostMapping("/generate")
+    private Flux<Movie> generateSampleData() {
+        return movieService.saveAllMovies();
+    }
+
+    @GetMapping("/ratings")
+    public Flux<Movie> findMovieBetweenRatings(@RequestParam("start") double startRating, @RequestParam("end") double endRating) {
+        return movieService.getByRatingInterval(startRating, endRating);
     }
 }

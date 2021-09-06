@@ -11,16 +11,15 @@ import java.util.List;
 /**
  * Created by Nasir on 12-09-2015.
  */
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Document(indexName = "movie-store", type = "movie", shards = 1, replicas = 0)
+@AllArgsConstructor
+@Builder
+@Document(indexName = "movie-store")
 public class Movie {
 
     @Id
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -29,7 +28,7 @@ public class Movie {
 
     private Double rating;
 
-    @Field(type = FieldType.Nested)
+    @Field(type = FieldType.Object)
     private Director director;
 
 }

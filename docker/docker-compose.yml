@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  elastic-service:
+    image: javatab/reactive-elastic-spring-data:0.0.1-SNAPSHOT
+    container_name: elasticService
+    ports:
+      - "8888:8888"
+    networks:
+      backend:
+        aliases:
+          - "elastic-service"
+
+networks:
+  backend:
+    driver: bridge
