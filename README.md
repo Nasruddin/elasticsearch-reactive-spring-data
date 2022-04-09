@@ -7,7 +7,7 @@
 * Basic operation to play around with elastic cluster
 * Application fully reactive and non blocking
 
-### For High Level REST Client refer this repository ### : https://github.com/Nasruddin/spring-elasticsearch-rest-high-level-client
+### For High Level REST Client; please refer this repository : https://github.com/Nasruddin/spring-elasticsearch-rest-high-level-client
 
 ## Requirement
 * Java 8+ 
