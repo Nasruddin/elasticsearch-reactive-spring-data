@@ -20,7 +20,7 @@ get following error:
 ```
 java.lang.IllegalStateException: Received message from unsupported version: [2.0.0] minimal compatible version is: [5.0.0]
 ```
-Also, if you are update Spring Boot to 2.x.x please download/run elasticsearch 6.8.3 version. If not you might face following issue:
+Also, if you update Spring Boot to 2.x.x please download/run elasticsearch 6.8.3 version. If not you might face following issue:
 ```
 failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: 
 None of the configured nodes are available: [{#transport#-1}{uWHhZacNR9mbfojQOayyAg}{127.0.0.1}{127.0.0.1:9300}]
