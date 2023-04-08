@@ -35,7 +35,7 @@ docker compose -f docker-compose-elastic.yml up
 * Build the project and create an Image out of it
 ```
 mvn clean install
-docker compose up
+cd docker/ && docker-compose up
 ```
 * Open browser and hit localhost:9200 and you should see below response
 ```
