@@ -85,7 +85,7 @@ curl localhost:8888/elastic-cluster/info
 
 * Below output should be seen post your curl cmd
 
-![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/index-info.png?raw=true "Optional Title")
+![Alt text]([https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/index-info.png?raw=true](https://github.com/Nasruddin/elasticsearch-reactive-spring-data/blob/master/instruction/swagger.png) "Optional Title")
 
 
 
