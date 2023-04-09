@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Building the application..."
+mvn clean install
+
 echo "Change dir to docker..."
 # shellcheck disable=SC2164
 cd docker
@@ -14,8 +17,6 @@ fi
 
 if [[ $@ == *"start"* ]]
 then
-    echo "Building the application..."
-    mvn clean install
     echo "Restarting the test environment..."
     echo "$ docker-compose down --remove-orphans"
     docker-compose down --remove-orphans
