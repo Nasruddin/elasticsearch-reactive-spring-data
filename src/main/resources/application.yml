@@ -1,15 +1,19 @@
 spring:
   application:
     name: ElasticsearchSpringData
-  data:
-    elasticsearch:
-      client:
-        reactive:
-          endpoints: elasticsearch
-          #localhost:9200 - If not running in container
-  elasticsearch:
-    rest:
-      uris: http://elasticsearch
-      #http://localhost:9200 - If not running in container
+
 server:
   port: 8888
+  servlet:
+    context-path: \
+
+springdoc:
+  swagger-ui:
+    use-root-path: true
+  version: "@springdoc.version@"
+
+elasticsearch.url: http://localhost:9200
+
+---
+spring.config.activate.on-profile: docker
+elasticsearch.url: elasticsearch

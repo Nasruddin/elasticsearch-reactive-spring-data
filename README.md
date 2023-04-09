@@ -7,7 +7,7 @@
 * Basic operation to play around with elastic cluster
 * Application fully reactive and non blocking
 
-### For High Level REST Client; please refer this repository : https://github.com/Nasruddin/spring-elasticsearch-rest-high-level-client
+### For High Level REST Client; please refer [this repository - Elasticsearch High Level Client](https://github.com/Nasruddin/spring-elasticsearch-rest-high-level-client)
 
 ## Requirement
 * Java 8+ 
@@ -25,34 +25,54 @@ Also, if you update Spring Boot to 2.x.x please download/run elasticsearch 6.8.3
 failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: 
 None of the configured nodes are available: [{#transport#-1}{uWHhZacNR9mbfojQOayyAg}{127.0.0.1}{127.0.0.1:9300}]
 ```
-## Running the sample app
 
-* Install and run Elastic Server 6.8.3
+###### Be careful! If you are migrating to elasticsearch to 8.5.0 or higher version. You will run into different kind of issue. Make sure you 
+migrate first to elastic 7.17.0 and then elastic 8.5.0 [Official Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html)
+
+## Running the application using docker-compose
+
+* Make the run.bash file executable for the current user
+```
+chmod u+x run.bash
+```
+
+* Run/start the application using run.bash
+```
+./run.bash start
+```
+
+## Running the application outside docker
+
+* Install and run Elasticsearch Server 8.5.0
+
+Refer the official [link](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html) to download and install elastic stack on your machine.
+
+* You can also use docker-compose to install elasticsearch,
 ```
 cd docker 
 docker compose -f docker-compose-elastic.yml up
 ```
 * Build the project and create an Image out of it
 ```
-mvn clean install
-cd docker/ && docker-compose up
+mvn spring-boot:run
 ```
-* Open browser and hit localhost:9200 and you should see below response
+
+* Open browser and hit localhost:9200, and you should see below response
 ```
 {
     name: "elasticsearch",
     cluster_name: "docker-cluster",
-    cluster_uuid: "49K60TXkQ0CW7utAmS8RFg",
+    cluster_uuid: "3yvjtNl7TaWuSMK7qWB79g",
     version: {
-        number: "7.12.1",
-        build_flavor: "default",
-        build_type: "docker",
-        build_hash: "3186837139b9c6b6d23c3200870651f10d3343b7",
-        build_date: "2021-04-20T20:56:39.040728659Z",
-        build_snapshot: false,
-        lucene_version: "8.8.0",
-        minimum_wire_compatibility_version: "6.8.0",
-        minimum_index_compatibility_version: "6.0.0-beta1"
+    number: "8.5.0",
+    build_flavor: "default",
+    build_type: "docker",
+    build_hash: "c94b4700cda13820dad5aa74fae6db185ca5c304",
+    build_date: "2022-10-24T16:54:16.433628434Z",
+    build_snapshot: false,
+    lucene_version: "9.4.1",
+    minimum_wire_compatibility_version: "7.17.0",
+    minimum_index_compatibility_version: "7.0.0"
     },
     tagline: "You Know, for Search"
 }
@@ -65,7 +85,7 @@ curl localhost:8888/elastic-cluster/info
 
 * Below output should be seen post your curl cmd
 
-  ![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/index-info.png?raw=true "Optional Title")
+![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/index-info.png?raw=true "Optional Title")
 
 
 
@@ -73,7 +93,7 @@ curl localhost:8888/elastic-cluster/info
 
 
 
-  ![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/swagger.png?raw=true "Optional Title")
+![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/swagger.png?raw=true "Optional Title")
 
 * Execute /movie/generate under movie-resource to populate your elasticsearch engine. As soon as you execute the resource; you should be able to see data in GUI for elasticsearch, in my ElasticVue for firefox. 
 Refer below image:
@@ -91,3 +111,6 @@ Additional endpoints exposed to get elastic details and clearing indices.
 ### WIP 
 * More APIs to be added
 * Test containers 
+
+
+chmod u+x
