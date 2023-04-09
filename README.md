@@ -90,7 +90,7 @@ Refer below image:
 
 ![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/data.png?raw=true "Optional Title")
 
-* Now you should have enough data to play around with. Also, you can persist you own data.
+* Now you should have enough data to play around with. Also, you can persist your own data.
 
 
 ## Extra Points
