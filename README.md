@@ -93,7 +93,7 @@ curl localhost:8888/elastic-cluster/info
 
 
 
-![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/swagger.png?raw=true "Optional Title")
+![Alt text](https://github.com/Nasruddin/elasticsearch-spring-boot-spring-data/blob/master/instruction/swagger1.png?raw=true "Optional Title")
 
 * Execute /movie/generate under movie-resource to populate your elasticsearch engine. As soon as you execute the resource; you should be able to see data in GUI for elasticsearch, in my ElasticVue for firefox. 
 Refer below image:
@@ -111,6 +111,3 @@ Additional endpoints exposed to get elastic details and clearing indices.
 ### WIP 
 * More APIs to be added
 * Test containers 
-
-
-chmod u+x
