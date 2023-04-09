@@ -1,18 +1,14 @@
 package starter.api;
 
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.common.settings.Settings;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.elasticsearch.client.elc.ReactiveElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import starter.model.Movie;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by nasir on 14/11/17.
@@ -23,7 +19,6 @@ import java.util.Map;
 @RequestMapping("/elastic-cluster")
 public class ElasticResource {
 
-    private final ElasticsearchRestTemplate elasticsearchTemplate;
     private final ReactiveElasticsearchTemplate reactiveElasticsearchTemplate;
     private final ReactiveElasticsearchOperations reactiveElasticsearchOperations;
 
